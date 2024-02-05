@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Favorite Places</title>
+
+    <!--Подгружаем библиотеку стилей bootstrap-->
+    <link 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+        rel="stylesheet" 
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
+        crossorigin="anonymous" 
+    />
+    <script 
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
+        crossorigin="anonymous"
+    ></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <style>
+        .card {
+            border-radius: 1em;
+            text-align: center;
+            padding: 1em;
+        }
+        .card:hover {
+            background-color: rgb(0, 0, 0, 0.1);
+        }
+        .card img {
+            border-radius: 50%;
+            width: 80%;
+            margin: auto;
+        }
+    </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container">
+          <a class="navbar-brand p-0" href="/">
+            <img src="icons8-галочка-100.png" alt="Logo" width="40">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="places.html">Favorite Places</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <div class="container my-5">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
+            <div class="col">
+                <div class="card">
+                    <img src="babies.jpg" class="card-img-top" alt="My favorite place 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <!-- loremN - autogenerate text with N words -->
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, soluta. Atque eveniet ut excepturi corrupti velit quo cumque, perferendis quod! Autem omnis, minima dicta inventore eaque neque reiciendis est eos ratione ea sint odio accusantium blanditiis dolor voluptatem veritatis saepe explicabo incidunt reprehenderit unde optio velit in. Repellendus, nesciunt veritatis!</p>
+                        <a 
+                            href="babies.jpg" 
+                            class="btn btn-primary"  
+                            target="_blank"
+                        >
+                            Get big image
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="https://pirsum.photos/id/1015/300" class="card-img-top" alt="My favorite place 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium nobis porro culpa? Ipsa ipsam illo iure praesentium? Similique, in non.</p>
+                        <a 
+                            href="https://pirsum.photos/id/1015/1500" 
+                            class="btn btn-primary"  
+                            target="_blank"
+                        >
+                            Get big image
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="https://pirsum.photos/id/1018/300" class="card-img-top" alt="My favorite place 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis explicabo eius quod! Quasi maxime excepturi accusantium distinctio natus sit vitae aspernatur corrupti nulla. Animi atque excepturi architecto non reprehenderit!</p>
+                        <a 
+                            href="https://pirsum.photos/id/1018/1500" 
+                            class="btn btn-primary" 
+                            target="_blank"
+                        >
+                            Get big image
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
