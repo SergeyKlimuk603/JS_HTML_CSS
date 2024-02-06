@@ -270,6 +270,7 @@ alert( calculator.mul() );
 
 //---------------------------------------------------------------------------------------------
 // https://learn.javascript.ru/object-methods
+"use strict"
 let ladder = {
     step: 0,
     up() {
@@ -285,14 +286,18 @@ let ladder = {
         console.log( this.step );
         return this;
     },
-    showThis: 
+    showThis: showThis
 };
 
-function showThis() {
+function showThis(callback1) {
+    console.log('-----1111111: ', this);
+    callback1();
     return this;
 }
 
-console.log('-----showThis(): ', showThis());
+console.log('-----000this: ', this);
+console.log('-----ladder.showThis(): ', ladder.showThis(function callback1() {console.log('-----222this: ', this);}));
+console.log('-----555ladder.showThis(): ', ladder.showThis(() => {console.log('-----555this: ', this);}));
 
 ladder.up();
 ladder.up();
