@@ -53,6 +53,10 @@ const person = {
     }
 }
 
+console.log(person);
+let clone = Object.assign({}, person)
+console.log(clone);
+clone.doWork3();
 globalThis.console.log(JSON.stringify(person));
 
 person.doWork();

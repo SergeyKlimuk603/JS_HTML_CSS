@@ -213,5 +213,95 @@ let b = {}; // два независимых объекта
 console.log( a == b ); // false
 console.log( a === b ); // false
 
+//---------------------------------------------------------------------------------------------
+const user = {
+    age: 23,
+    name: "Sergey",
+    address: {
+        city: "Grodno",
+        country: 'Belarus'
+    }
+}
+
+const clone = {...user};
+clone.name = "Vadim";
+clone.address.country = "Europe";
+console.log('-----user: ', user);
+console.log('-----clone: ', clone);
+console.log('-----...user: ', {...user}); // 
+
+//---------------------------------------------------------------------------------------------
+// Области видимости замыкание
+let a = 0;
+function fOuter() {
+    let a = 0;
+
+    return function() {
+        a++;
+        return a;
+    }
+}
+
+let f = fOuter();
+console.log('-----f(): ', f()); // 1
+console.log('-----f(): ', f()); // 2
+console.log('-----f(): ', f()); // 3
+console.log('-----f(): ', f()); // 4
+console.log('-----a: ', a); // 0
+//---------------------------------------------------------------------------------------------
+let calculator = {
+    a: 0, // объявлять не обязательно
+    b: 0, // объявлять не обязательно
+    read: function() {
+        this.a = +prompt('a?', 0);
+        this.b = +prompt('b?', 0);
+    },
+    sum() {
+        return this.a + this.b;
+    },
+    mul() {
+        return this.a * this.b;
+    }
+};
+  
+calculator.read();
+alert( calculator.sum() );
+alert( calculator.mul() );
+
+//---------------------------------------------------------------------------------------------
+// https://learn.javascript.ru/object-methods
+let ladder = {
+    step: 0,
+    up() {
+        this.step++;
+        console.log('-----this: ', this);
+        return this;
+    },
+    down() {
+        this.step--;
+        return this;
+    },
+    showStep: function() { // показывает текущую ступеньку
+        console.log( this.step );
+        return this;
+    },
+    showThis: 
+};
+
+function showThis() {
+    return this;
+}
+
+console.log('-----showThis(): ', showThis());
+
+ladder.up();
+ladder.up();
+ladder.down();
+ladder.showStep(); // 1
+ladder.down();
+ladder.showStep(); // 0
+
+ladder.up().up().down().showStep().down().showStep(); // показывает 1 затем 0
+
 
 
