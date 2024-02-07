@@ -1,4 +1,383 @@
 
+
+
+{
+    try {
+        throw {name: 'Errrrror'}
+    } catch (error) {
+        console.log('-----error: ', error);
+        throw {name: 'Errrrror in catch'}
+    } finally {
+        console.log('-----finaly: ');
+    }
+
+
+}
+
+
+//---------------------------------------------------------------------------------------------
+
+{
+    let eventMixin = {
+        /**
+         * Подписаться на событие, использование:
+         * menu.on('select', function(item) { ... }
+         */
+        on(eventName, handler) {
+          if (!this._eventHandlers) this._eventHandlers = {};
+          if (!this._eventHandlers[eventName]) {
+            this._eventHandlers[eventName] = [];
+          }
+          this._eventHandlers[eventName].push(handler);
+        },
+      
+        /**
+         * Отменить подписку, использование:
+         * menu.off('select', handler)
+         */
+        off(eventName, handler) {
+          let handlers = this._eventHandlers?.[eventName];
+          if (!handlers) return;
+          for (let i = 0; i < handlers.length; i++) {
+            if (handlers[i] === handler) {
+              handlers.splice(i--, 1);
+            }
+          }
+        },
+      
+        /**
+         * Сгенерировать событие с указанным именем и данными
+         * this.trigger('select', data1, data2);
+         */
+        trigger(eventName, ...args) {
+          if (!this._eventHandlers?.[eventName]) {
+            return; // обработчиков для этого события нет
+          }
+      
+          // вызовем обработчики
+          this._eventHandlers[eventName].forEach(handler => handler.apply(this, args));
+        }
+      };
+    class Menu {
+        choose(value) {
+          this.trigger("select", value);
+        }
+      }
+      // Добавим примесь с методами для событий
+      Object.assign(Menu.prototype, eventMixin);
+      
+      let menu = new Menu();
+      
+      // Добавим обработчик, который будет вызван при событии "select":
+      menu.on("select", value => console.log(`Выбранное значение Menu: ${value}`));
+      
+      // Генерирует событие => обработчик выше запускается и выводит:
+      menu.choose("123"); // Выбранное значение: 123
+
+      class Menu1 {
+        choose(value) {
+          this.trigger("select", value);
+        }
+      }
+      // Добавим примесь с методами для событий
+      Object.assign(Menu1.prototype, eventMixin);
+      
+      let menu1 = new Menu1();
+      
+      // Добавим обработчик, который будет вызван при событии "select":
+      menu1.on("select", value => console.log(`Выбранное значение Menu1: ${value}`));
+      
+      // Генерирует событие => обработчик выше запускается и выводит:
+      menu1.choose("123"); // Выбранное значение: 123
+}
+
+// код Коли------------------------------------------------------------------------------------
+{
+     function a(name) {
+        this.name = name; 
+     }
+     
+     a.prototype.parentMethod = function () {};
+     
+     let b = new a('Sergey');
+     console.log(b);
+     console.log('-----typeof b: ', typeof b);
+}
+
+//---------------------------------------------------------------------------------------------
+{
+    let obj1 = {
+        name1: "Obj1",
+        fun1() {
+            console.log('-----fun1 starts: ');
+        }
+    }
+    let obj2 = {
+        name2: 'Obj2',
+        fun2() {
+            console.log('-----fun2 starts: ');
+        }
+    }
+    let obj = {
+        name: 'Obj',
+        fun() {
+            console.log('-----fun starts: ');
+        }
+    }
+    console.log('-----obj1: ', obj1);
+    console.log('-----obj2: ', obj2);
+    console.log('--------------------------------------------------: ');
+    console.log('-----obj: ', obj);
+    obj.__proto__ = obj1;
+    console.log('-----obj: ', obj);
+    obj.__proto__ = obj2;
+    console.log('-----obj: ', obj);
+    // obj.__proto__ = obj;
+    // console.log('-----obj: ', obj);
+    obj.__proto__ = null;
+    console.log('-----obj: ', obj);
+    
+}
+
+{
+
+    let person = {
+        name: "Unknow",
+        sayHello: function() {
+            console.log('-----: ', `Hello, my name is ${this.name}`);
+        }
+    }
+
+    let john = Object.create(person);
+    john.name = 'John';
+    let jain = Object.create(person);
+    jain.name = 'Jain';
+
+    john.sayHello();
+    jain.sayHello();
+
+    console.log('-----john: ', john);
+    console.log('-----john.__proto__: ', john.__proto__);
+
+    jain.__proto__ = null;
+    console.log('-----jain: ', jain);
+    console.log('-----jain.__proto__: ', jain.__proto__);
+}
+
+
+
+//---------------------------------------------------------------------------------------------
+{
+    class CoffeeMachine {
+        //power;
+      
+        constructor(power) {
+          this._power = power;
+        }
+      
+        get power() {
+          return this._power;
+        }
+      
+      }
+      
+      // создаём кофеварку
+      let coffeeMachine = new CoffeeMachine(100);
+      
+      console.log(`Мощность: ${coffeeMachine.power}W`); // Мощность: 100W
+      
+      coffeeMachine.power = 25; // Error (no setter)
+      console.log('-----coffeeMachine.power: ', coffeeMachine.power);
+
+      class Human {
+        name;
+        constructor(name) {
+            this.name = name;
+        }
+
+        get name() {
+            return name + age;
+        }
+      }
+
+      let hum = new Human('Gorg');
+      console.log('-----hum.name: ', hum.name);
+}
+
+//---------------------------------------------------------------------------------------------
+
+{
+    class Human {
+        name = 'some name';
+        constructor(name) {
+            this.name = name;
+        }
+        go() {
+            console.log('-----1: ', this.name + ' can go');
+        }
+    }
+
+    class Person extends Human {
+        personName = 'Some person name';
+        constructor(personName) {
+            super();
+            this.personName = personName;
+        }
+
+        say() {
+            console.log('-----: ', this.name + ' can say');
+            console.log('-----: ', this.personName + ' can say');
+        }
+    }
+
+    // let hum = new Human('ttt');
+    // hum.go();
+    // console.log('-----hum.name: ', hum.name);
+
+    let per = new Person('ttt');
+    per.go();
+    per.say();
+    console.log('-----per.name: ', per.name);
+    console.log('-----: ', );
+
+    let per1 = new Person('rrr');
+    per1.go();
+    per1.say();
+    console.log('-----per1.name: ', per1.name);
+
+    per.go();
+    per.say();
+    console.log('-----per.name: ', per.name);
+    console.log('-----: ', );
+    console.log('-----typeof per: ', typeof per);
+    console.log('-----typeof Person: ', typeof Person);
+    console.log('-----per: ', per);
+}
+
+
+//---------------------------------------------------------------------------------------------
+
+{
+    let from = 7;
+    let to = 12;
+    function printNumbers(from, to) {
+        let count = from;
+        setTimeout(function increase() {
+            console.log('-----count: ', count++);
+            if (count <= to) {
+                setTimeout(increase, 1000);
+            }
+        }, 1000);
+    }
+    printNumbers(from, to);
+/*
+    -----count:  7
+    -----count:  8
+    -----count:  9
+    -----count:  10
+    -----count:  11
+    -----count:  12
+*/
+}
+
+
+{
+    const timerId = setInterval(fun, 500, 'Dima');
+
+    function fun(name) {
+        console.log('-----: ', `Hello ${name}`);
+    }
+
+    setTimeout(clearFun, 2000, timerId);
+
+    function clearFun(timerId) {
+        clearInterval(timerId);
+    }
+
+    /*
+        -----:  Hello Dima
+        -----:  Hello Dima
+        -----:  Hello Dima
+    */
+}
+
+{
+    let timerId = setTimeout(fun, 2000, "Sergey");
+
+    function fun(name) {
+        console.log('-----: ', `Hello ${name}`);
+    }
+
+    console.log('-----timerId: ', timerId);
+}
+
+//---------------------------------------------------------------------------------------------
+{
+    function funWithManyParameters(a, b, c, d, e, f) {
+        console.log('-----a: ', a);
+        console.log('-----b: ', b);
+        console.log('-----c: ', c);
+        console.log('-----d: ', d);
+        console.log('-----e: ', e);
+        console.log('-----f: ', f);
+    }
+    const someArray = ['a', 'b', 'c'];
+    funWithManyParameters(1, 2, 3, ...someArray);
+
+    function funWithManyParameters1(a, b, ...rest) {
+        console.log('-----a: ', a);
+        console.log('-----b: ', b);
+        for (let value of rest) {
+            console.log('-----value: ', value);
+        }
+    }
+    funWithManyParameters1(1, 2, 3, 'a', 'b', 'c');
+
+    const obj = {
+        name: 'Obj',
+        Id: 100,
+        age: 20,
+    };
+    let arrayFromOjject = {...obj};
+    console.log('-----arrayFromOjject: ', arrayFromOjject);
+}
+
+
+
+//---------------------------------------------------------------------------------------------
+const obj1 = {
+    name: 'Obj1'
+};
+const obj2 = {
+    name: 'Obj2',
+    Id: 100,
+    age: 20,
+    valueOf() {
+        return this.age;
+    }
+};
+const objSum = obj1 + obj2;
+console.log('-----objSum: ', objSum);
+console.log('-----JSON.stringify(objSum): ', JSON.stringify(objSum));
+console.log('-----obj1.valueOf(): ', obj1.valueOf());
+console.log('-----obj1: ', obj1);
+console.log('----- +obj1: ', +obj1);
+console.log('----- +obj2: ', +obj2);
+console.log('-----obj1.toString(): ', obj1.toString());
+console.log('-----typeof obj1.valueOf(): ', typeof obj1.valueOf());
+
+
+//---------------------------------------------------------------------------------------------
+const idSymbol = Symbol("Id");
+const idSymbol1 = Symbol("Id");
+const obj = {
+    name: 'FFF',
+    [idSymbol]: 123,
+    [idSymbol1]: 'ad',
+}
+console.log('-----obj: ', obj); // { name: 'FFF', [Symbol(Id)]: 123, [Symbol(Id)]: 'ad' }
+
+//---------------------------------------------------------------------------------------------
 console.log('-----typeof 5: ', typeof 5); // number
 console.log('-----typeof "text" + "_1": ', typeof "text" + "_1"); // string_1
 console.log('-----typeof ("text" + "_1"): ', typeof ("text" + "_1")); // string
