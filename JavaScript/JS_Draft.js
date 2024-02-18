@@ -1,6 +1,24 @@
 
+{
+    function aaa(name) {
+        this.aName = name;
 
+        this.funAaa = function() {}
+    }
 
+    let objAaa = new aaa('Aaa Object');
+    let obj = new Object();
+
+    console.log('-----objAaa: ', objAaa);
+    console.log('-----obj: ', obj);
+
+    let objBbb = new Object();
+    objBbb.__proto__ = objAaa;
+    console.log('-----objBbb: ', objBbb);
+    let objCcc = new Object();
+    objCcc.__proto__ = obj;
+    console.log('-----objCcc: ', objCcc);
+}
 {
     try {
         throw {name: 'Errrrror'}
@@ -97,10 +115,14 @@
         this.name = name; 
      }
      
-     a.prototype.parentMethod = function () {};
+     a.prototype.parentMethod1 = function () {};
      
      let b = new a('Sergey');
+     console.log('-----a: ', a);
+     console.log('-----a: ', a.constructor);
      console.log(b);
+     console.dir(b);
+     
      console.log('-----typeof b: ', typeof b);
 }
 
