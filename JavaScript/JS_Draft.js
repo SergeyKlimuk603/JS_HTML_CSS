@@ -1,7 +1,6 @@
 
 //---------------------------------------------------------------------------------------------
 
-
 {
     let prom = new Promise(resolve => resolve('555'))
 
@@ -21,8 +20,6 @@
 
     console.log('-----4');
 }
-
-
 
 //---------------------------------------------------------------------------------------------
 // Promise.all
@@ -376,6 +373,54 @@
     driver.sayHi();
     driver.doWork();
     driver.drive();
+}
+
+//---------------------------------------------------------------------------------------------
+{
+    function fun1() {
+        console.log('-----1');
+        let prom = new Promise(resolve => {
+            console.log('-----2');
+            resolve('3' + console.log('-----4'));
+        });
+        console.log('-----5');
+        prom.then((result) => {
+            console.log('-----6');
+            console.log('-----result: ', result);
+        });
+        console.log('-----7');
+    }
+    fun1();
+    /*
+        -----1
+        -----2
+        -----4
+        -----5
+        -----7
+        -----6
+        -----resolve:  3undefined
+    */
+
+    async function fun2() {
+        console.log('-----1');
+        let prom = new Promise(resolve => {
+            console.log('-----2');
+            resolve('3' + console.log('-----4'));
+        });
+        console.log('-----5');
+        let result = await prom;
+        console.log('-----6');
+        console.log('-----result: ', result);
+    }
+    fun2();
+    /*
+        -----1
+        -----2
+        -----4
+        -----5
+        -----6
+        -----result:  3undefined
+    */
 }
 
 //---------------------------------------------------------------------------------------------
