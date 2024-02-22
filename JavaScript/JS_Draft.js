@@ -1,4 +1,385 @@
 
+//---------------------------------------------------------------------------------------------
+
+
+{
+    let prom = new Promise(resolve => resolve('555'))
+
+    console.log('-----2');
+
+    prom.then(result => console.log('-----3'))
+
+    console.log('-----4');
+}
+
+{
+    let prom = Promise.resolve('555');
+
+    console.log('-----2');
+
+    prom.then(result => console.log('-----3'))
+
+    console.log('-----4');
+}
+
+
+
+//---------------------------------------------------------------------------------------------
+// Promise.all
+{
+    let prom1 = new Promise((resolve, reject) => {
+        console.log('-----1');
+        setTimeout(function() {
+            resolve('1');
+        }, 1000)
+    });
+
+    let prom2 = new Promise((resolve, reject) => {
+        console.log('-----2');
+        setTimeout(function() {
+            resolve('2');
+        }, 200)
+    });
+
+    let prom3 = new Promise((resolve, reject) => {
+        console.log('-----3');
+        setTimeout(function() {
+            resolve('3');
+        }, 300)
+    });
+
+    console.log('-----4');
+    let prom = Promise.all([prom1, prom2, prom3]);
+    console.log('-----5');
+    prom.then(result => console.log('-----result: ', result));
+    console.log('-----6');
+
+    /*
+        -----1
+        -----2
+        -----3
+        -----4
+        -----5
+        -----6
+        -----result:  [ '1', '2', '3' ]
+    */
+}
+// Promise.all with Error
+{
+    let prom1 = new Promise((resolve, reject) => {
+        console.log('-----1');
+        setTimeout(function() {
+            resolve('1');
+        }, 1000)
+    });
+
+    let prom2 = new Promise((resolve, reject) => {
+        console.log('-----2');
+        setTimeout(function() {
+            reject('2');
+        }, 200)
+    });
+
+    console.log('-----3');
+    let prom = Promise.all([prom1, prom2]);
+    console.log('-----4');
+    prom
+        .then(result => console.log('-----result: ', result))
+        .catch(error => console.log('-----error: ', error));
+    console.log('-----5');
+/*
+    -----1
+    -----2
+    -----3
+    -----4
+    -----5
+    -----error:  2
+*/
+}
+// Promise.allSettled with Error
+{
+    let prom1 = new Promise((resolve, reject) => {
+        console.log('-----1');
+        setTimeout(function() {
+            resolve('1');
+        }, 1000)
+    });
+
+    let prom2 = new Promise((resolve, reject) => {
+        console.log('-----2');
+        setTimeout(function() {
+            reject('2');
+        }, 200)
+    });
+
+    console.log('-----3');
+    let prom = Promise.allSettled([prom1, prom2, 3]);
+    console.log('-----4');
+    prom
+        .then(result => console.log('-----result: ', result))
+        .catch(error => console.log('-----error: ', error));
+    console.log('-----5');
+/*
+    -----1
+    -----2
+    -----3
+    -----4
+    -----5
+    -----result:  [
+        { status: 'fulfilled', value: '1' },
+        { status: 'rejected', reason: '2' },
+        { status: 'fulfilled', value: 3 }
+    ]    
+*/
+}
+
+//---------------------------------------------------------------------------------------------
+
+{
+    async function f() {
+
+        console.log('-----1');
+        let promise = new Promise((resolve, reject) => {
+          setTimeout(() => {clresolve("готово!")}, 1000)
+        });
+      
+        let result = await promise; // будет ждать, пока промис не выполнится (*)
+      
+        console.log('-----result: ', result); // "готово!"
+      }
+      
+      f();
+}
+
+
+{
+    async function fun() {
+        console.log('-----1');
+        let prom = new Promise((res) => {
+            setTimeout(() => res('-----4'), 2000)
+        });
+        console.log('-----prom: ', prom);
+        let result = await prom;
+        console.log('-----3');
+        console.log('-----result: ', result);
+    }
+    fun();
+}
+
+{
+    async function fun1() {
+        console.log('-----333');
+        return '555'
+    }
+
+    async function fun() {
+        console.log('-----1');
+        let prom = fun1();
+        console.log('-----prom: ', prom);
+        let result = prom;
+        console.log('-----3');
+        console.log('-----result: ', result);
+    }
+    fun();
+}
+
+{
+    async function fun() {
+        console.log('-----1');
+        let prom = Promise.resolve('666');
+        console.log('-----prom: ', prom);
+        let result = await prom;
+        console.log('-----3');
+        console.log('-----result: ', result);
+    }
+    fun();
+}
+
+{
+    console.log('-----1');
+    let prom = new Promise((function(res, rej) {
+        setTimeout(() => res(console.log('-----2')))
+    }));
+
+    console.log('-----3');
+    
+    prom.then(function() {
+        console.log('-----4');
+    })
+
+    console.log('-----5');
+    /*
+    -----1
+    -----3
+    -----5
+    -----2
+    -----4
+    */
+}
+
+
+{
+    console.log('-----1');
+    let prom = new Promise((function(res, rej) {
+        res(console.log('-----2'))
+    }));
+
+    console.log('-----3');
+    
+    prom.then(function() {
+        console.log('-----4');
+    })
+
+    console.log('-----5');
+    /*
+    -----1
+    -----2
+    -----3
+    -----5
+    -----4
+    */
+}
+
+
+{
+    setTimeout(() => console.log('-----2'), 2000);
+    console.log('-----1');
+}
+
+{
+    setTimeout(() => console.log('-----2'), 2000);
+    console.log('-----1');
+
+    let prom = new Promise((resolve, reject) => {
+        console.log('-----3');
+        resolve(console.log('-----4'));
+    });
+    prom.then(resolve => console.log('-----5: ', resolve));
+
+    let prom1 = new Promise((resolve, reject) => {
+        console.log('-----31');
+        setTimeout(() => resolve(console.log('-----41')), 3000);
+    });
+    let x = prom1.then(resolve => console.log('-----51: ', resolve));
+    console.log('-----x: ', x);
+}
+//---------------------------------------------------------------------------------------------
+{
+    function HumanFunction(name) {
+        this.name = name;
+    }
+
+    let humanFunction = new HumanFunction('Human from Function');
+    console.log('-----humanFunction: ', humanFunction);
+}
+
+
+{
+    class Human {
+        constructor(name) {
+            this.name = name;
+        }
+
+        sayHi() {
+            console.log(`Hello, I am a Human! My name is ${this.name}.`);
+        }
+
+    }
+
+    let human = new Human('Human Name');
+
+    console.log('-----human: ', human);
+
+
+    class Worker extends Human {
+        constructor(name) {
+            super(name);
+        }
+
+        sayHi() {
+            console.log(`Hello, I am a Worker! My name is ${this.name}.`);
+        }
+
+       
+    }
+
+    let worker = new Worker('Worker Name');
+    
+    console.log('-----worker: ', worker);
+    
+
+    class Driver extends Worker {
+        constructor(name) {
+            super(name);
+        }
+
+        sayHi() {
+            console.log(`Hello, I am a Driver! My name is ${this.name}.`);
+        }
+
+        
+    }
+
+    let driver = new Driver('Driver Name');
+    
+    console.log('-----driver: ', driver);
+
+}
+
+
+{
+    class Human {
+        surname;
+        constructor(name) {
+            this.name = name;
+        }
+
+        sayHi() {
+            console.log(`Hello! My name is ${this.name}.`);
+        }
+    }
+
+    let human = new Human('Human Name');
+
+    console.log('-----human: ', human);
+    human.sayHi();
+
+    class Worker extends Human {
+        constructor(name) {
+            super(name);
+        }
+
+        doWork() {
+            console.log(`I am ${this.name}, and I am at work now`);
+        }
+    }
+
+    let worker = new Worker('Worker Name');
+    
+    console.log('-----worker: ', worker);
+    worker.sayHi();
+    worker.doWork();
+
+    class Driver extends Worker {
+        constructor(name) {
+            super(name);
+        }
+
+        drive() {
+            console.log(`I am a driver ${this.name}, and I am driving now`);
+        }
+    }
+
+    let driver = new Driver('Driver Name');
+    
+    console.log('-----driver: ', driver);
+    driver.sayHi();
+    driver.doWork();
+    driver.drive();
+}
+
+//---------------------------------------------------------------------------------------------
+
 {
     function aaa(name) {
         this.aName = name;

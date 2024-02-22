@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body  id="bodyId">
+    Правда о лосях.
+    <ol id="olId">
+      <li id="liOneId">Лось -- животное хитрое</li>
+      <!-- комментарий -->
+      <li id="liTwoId">...и коварное!</li>
+    </ol>
+    <script>
+        bodyId.style.color = "Green" // Здесь мы используем Id 'bodyId' для прямого дотступа к тегу.
+        document.getElementById('olId').style.color = "red";
+        document.querySelector('#liTwoId').style.color = "blue"
+    </script>
+</body>
+</html>
