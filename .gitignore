@@ -1,2 +1,5 @@
 # Salesforce cache
 .sfdx/
+
+# IDE
+.vscode/
