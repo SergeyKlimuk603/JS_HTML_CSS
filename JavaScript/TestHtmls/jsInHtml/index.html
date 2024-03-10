@@ -12,11 +12,75 @@
       <!-- комментарий -->
       <li id="liTwoId">...и коварное!</li>
     </ol>
-    <script>
-        bodyId.style.color = "Green" // Здесь мы используем Id 'bodyId' для прямого дотступа к тегу.
-        document.getElementById('olId').style.color = "red";
-        document.querySelector('#liTwoId').style.color = "blue"
-        console.log(document.body + ' ');
-    </script>
+    <!-- <script>
+//        bodyId.style.color = "Green" // Здесь мы используем Id 'bodyId' для прямого дотступа к тегу.
+//        document.getElementById('olId').style.color = "red";
+//        document.querySelector('#liTwoId').style.color = "blue"
+//        console.log(document.body + ' ');
+    </script> -->
+
+    <!-- пометить div, чтобы показать здесь поле "name" -->
+<div show-info="name"></div>
+<!-- а здесь возраст "age" -->
+<div show-info="age"></div>
+
+<script>
+  // код находит элемент с пометкой и показывает запрошенную информацию
+  let user = {
+    name: "Pete",
+    age: 25
+  };
+
+  for(let div of document.querySelectorAll('[show-info]')) {
+    // вставить соответствующую информацию в поле
+    let field = div.getAttribute('show-info');
+    div.innerHTML = user[field]; // сначала Pete в name, потом 25 в age
+  }
+</script>
+
+<style>
+    .order[data-order-state="new"] {
+      color: green;
+    }
+  
+    .order[data-order-state="pending"] {
+      color: blue;
+    }
+  
+    .order[data-order-state="canceled"] {
+      color: red;
+    }
+  </style>
+  
+  <div id="order" class="order" data-order-state="new">
+    A new order.
+  </div>
+  
+  <script>
+    // чтение
+    console.log(order.dataset.orderState); // new
+  
+    // изменение
+    order.dataset.orderState = "pending"; // (*)
+  </script>
+
+  <ol id="ol">
+    <li>0</li>
+    <li>1</li>
+    <li>2</li>
+  </ol>
+  
+  <script>
+    ol.before('before'); // вставить строку "before" перед <ol>
+    ol.after('after'); // вставить строку "after" после <ol>
+  
+    let liFirst = document.createElement('li');
+    liFirst.innerHTML = 'prepend';
+    ol.prepend(liFirst); // вставить liFirst в начало <ol>
+  
+    let liLast = document.createElement('li');
+    liLast.innerHTML = 'append';
+    ol.append(liLast); // вставить liLast в конец <ol>
+  </script>
 </body>
 </html>
