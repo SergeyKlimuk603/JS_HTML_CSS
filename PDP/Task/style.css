@@ -1,0 +1,27 @@
+div {
+    margin: 2rem;
+    border: 2px solid;
+    text-align: center;
+}
+
+#redDiv {
+    border-color: red;
+}
+
+#yellowDiv {
+    border-color: yellow;
+}
+
+#blueDiv {
+    border-color: blue;
+}
+
+#greenDiv {
+    border-color: green;
+}
+
+form {
+    padding-left: 2rem;
+    text-align: left;
+}
+
