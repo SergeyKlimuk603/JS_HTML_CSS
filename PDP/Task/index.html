@@ -8,29 +8,43 @@
     
 </head>
 <body>
-    <div id="redDiv">
-        Red div.
-        <form>
-            <label>
-                <input  type="checkbox" name="redDiv">
-                Process Capturing phase
-            </label>
-            <label>
-                <input  type="checkbox" name="redDiv">
-                Process Target phase
-            </label>
-            <br>
-            <label>
-                <input  type="checkbox" name="redDiv">
-                Process Bubling phase
-            </label>
-           <br>
-           <button name="throwEvent">Throw on event</button> 
-        </form>
+    <div id="redDiv" class="divBlock">
+        <div>
+            <div>Red div.</div>
+            <div class="twoColumnDiv">
+                <form>
+                    <label>
+                        <input  type="checkbox" name="redDiv">
+                        Process Capturing phase
+                    </label>
+                    <label>
+                        <input  type="checkbox" name="redDiv">
+                        Process Target phase
+                    </label>
+                    <br>
+                    <label>
+                        <input  type="checkbox" name="redDiv">
+                        Process Bubling phase
+                    </label>
+                    <br>
+                     
+                </form>
+                <button id="bbb" name="throwEvent">Throw on event</button>
+            </div>
+            <div class="twoColumnDiv">
+                <div class="threeColumnDiv">
+                    <div id="rrr" class="redIndicator raise"></div>
+                </div>
+                <div class="threeColumnDiv">
+                    target
+                </div>
+                <div class="threeColumnDiv">
+                    bubles
+                </div>
+            </div>
+        </div>
         
-        
-        <p></p>
-        <div id="yellowDiv">
+        <div id="yellowDiv"  class="divBlock">
             Yellow div.
             <form>
                 <label>
@@ -47,9 +61,9 @@
                     Process Bubling phase
                 </label>
                <br>
-               <button name="throwEvent">Throw on event</button> 
+               <button name="throwEvent1">Throw on event</button> 
             </form>
-            <div id="blueDiv">
+            <div id="blueDiv"  class="divBlock">
                 Blue div.
                 <form>
                     <label>
@@ -66,9 +80,9 @@
                         Process Bubling phase
                     </label>
                    <br>
-                   <button name="throwEvent">Throw on event</button> 
+                   <button name="throwEvent2">Throw on event</button> 
                 </form>
-                <div id="greenDiv">
+                <div id="greenDiv"  class="divBlock">
                     Green div.
                     <form>
                         <label>
@@ -85,9 +99,17 @@
                             Process Bubling phase
                         </label>
                        <br>
-                       <button name="throwEvent">Throw on event</button> 
+                       <button name="throwEvent3">Throw on event</button> 
                 </div>
             </div>
+        </div>
+    </div>
+    <div id="testDiv" class="testDiv">
+        <div class="testDiv">
+            r
+        </div>
+        <div class="testDiv">
+            t
         </div>
     </div>
     <script src="script.js"></script>
