@@ -1,0 +1,84 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>Events</title>
+        <style>
+            .blueBorder {
+                border: 2px solid blue;
+            }
+            .redBorder {
+                border: 2px solid red;
+            }
+            .boxSizes {
+                margin: 10px;
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <form Id="form1" class="blueBorder boxSizes">
+            Form 1
+            <div Id="div1" class="blueBorder boxSizes">
+                Div 1
+                <p Id="p1" class="blueBorder boxSizes">
+                    P 1
+                </p>
+            </div>
+        </form>
+        <form Id="form2" class="redBorder boxSizes">
+            Form 2
+            <div Id="div2" class="redBorder boxSizes">
+                Div 2
+                <p Id="p2" class="redBorder boxSizes">
+                    P 2
+                </p>
+            </div>
+        </form>
+    </body>
+    <script>
+        let allElements = document.querySelectorAll('*');
+        console.log('-----allElements: ', allElements);
+        console.dir('-----allElements: ', allElements);
+        for(let elem of allElements) {
+            elem.addEventListener(
+                'click', 
+                event => {
+                    console.log(`-----Всплытие ${elem.tagName} id ${elem.id}.: `, event);
+                    console.log('-----event.detail: ', event.detail);
+                    console.log(`----------currentTarget: ${event.currentTarget.tagName} \t||| target: ${event.target.tagName}`);
+                }
+            );
+            elem.addEventListener(
+                'click', 
+                event => {
+                    console.log(`-----Погружение ${elem.tagName} id ${elem.id}.: `, event);
+                    console.log(`----------currentTarget: ${event.currentTarget.tagName} \t||| target: ${event.target.tagName}`);
+                },
+                {capture: true}
+            );
+        }
+        // let myClick = new Event('click');
+        // let myClickWithBubbles = new Event('click', {bubbles: true});
+        // div2.dispatchEvent(myClick);
+
+        /*
+            let myCustomEvent = new CustomEvent('click', {
+                detail: {name: 'Вася'},
+                bubbles: true
+            });
+            div2.dispatchEvent(myCustomEvent);
+        */
+        /*
+            let myCustomEvent = new CustomEvent('click', {
+                detail: 'some details',
+                myProperties: 'some propertie',
+                bubbles: true
+            });
+            div2.dispatchEvent(myCustomEvent);
+        */
+    </script>
+</html>
+
+
+
+
