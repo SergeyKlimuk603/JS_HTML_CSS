@@ -4,8 +4,15 @@
     border: 2px solid;
 }
 
+.divTitle {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
 .twoColumnDiv {
     display: inline-block;
+    vertical-align: middle;
     width: 49%;
 }
 
