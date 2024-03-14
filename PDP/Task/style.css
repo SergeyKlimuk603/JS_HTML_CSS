@@ -56,6 +56,23 @@ form {
 }
 
 .raise {
-    transition: background-color 10s, width 1s;
+    /* transition: background-color 10s, width 1s; */
+    animation-duration: 3s;
+    animation-name: slidein;
+    animation-iteration-count: 1;
+}
+
+@keyframes slidein {
+    from {
+      width: 0%;
+    }
+  
+    to {
+      width: 0%;
+    }
+  
+    50% {
+      width: 100%;
+    }
 }
 
