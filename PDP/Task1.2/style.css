@@ -1,0 +1,72 @@
+.divContainer {
+    margin: 2rem;
+    padding: 1rem;
+    border: 2px solid;
+}
+
+.divTitle {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+.twoColumnDiv {
+    display: inline-block;
+    vertical-align: middle;
+    width: 49%;
+}
+
+.threeColumnDiv {
+    display: inline-block;
+    width: 32%;
+    height: auto;
+}
+
+.fourColumnDiv {
+    display: inline-block;
+    width: 24%;
+    height: auto;
+}
+
+.captureIndicator {
+    background-color: red;
+    width: 0%; 
+    height: 20px
+}
+
+.targetCaptureIndicator {
+    background-color: #8F0;
+    width: 0%; 
+    height: 20px
+}
+.targetBubbleIndicator {
+    background-color: #0F8;
+    width: 0%; 
+    height: 20px
+}
+
+.bubbleIndicator {
+    background-color: blue;
+    width: 0%; 
+    height: 20px
+}
+
+.animation {
+    /* transition: background-color 10s, width 1s; */
+    animation-duration: 0.5s;
+    animation-name: slidein;
+    animation-iteration-count: 1;
+}
+
+@keyframes slidein {
+    from {
+      width: 0%;
+    }
+  
+    to {
+      width: 0%;
+    }
+  
+    50% {
+      width: 100%;
+    }
+}
