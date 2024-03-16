@@ -1,0 +1,35 @@
+111111
+<div id="div{!id}" class="divContainer">
+    <div class="divTitle">
+        Div {!id}.
+    </div>
+    <div class="twoColumnDiv">
+        <input type="checkbox" class="captureCheckbox" checked>
+            Process Capturing phase
+        <input type="checkbox" class="targetCheckbox" checked>
+            Process Target phase
+        <br>
+        <input type="checkbox" class="bubbleCheckbox" checked>
+            Process Bubling phase
+        <br>
+        <button name="div{!id}" class="throwEventButton">Throw on event</button>          
+    </div>
+    <div class="twoColumnDiv">
+        <div class="fourColumnDiv">
+            capture
+            <div class="captureIndicator indicator"></div>
+        </div>
+        <div class="fourColumnDiv">
+            targetCapture
+            <div class="targetCaptureIndicator indicator"></div>
+        </div>
+        <div class="fourColumnDiv">
+            targetBubbles
+            <div class="targetBubbleIndicator indicator"></div>
+        </div>
+        <div class="fourColumnDiv">
+            bubles
+            <div class="bubbleIndicator indicator"></div>
+        </div>
+    </div>
+    <div class="divInnerConteiner">{!innerContent}</div>

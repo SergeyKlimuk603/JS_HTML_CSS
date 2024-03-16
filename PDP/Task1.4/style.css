@@ -1,0 +1,56 @@
+.divContainer {
+    margin: 2rem;
+    padding: 1rem;
+    border: 2px solid;
+}
+
+.divTitle {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+.twoColumnDiv {
+    display: inline-block;
+    vertical-align: middle;
+    width: 49%;
+}
+
+.threeColumnDiv {
+    display: inline-block;
+    width: 32%;
+    height: auto;
+}
+
+.fourColumnDiv {
+    display: inline-block;
+    width: 24%;
+    height: auto;
+    text-align: center;
+}
+
+.indicator {
+    width: 0%; 
+    height: 20px
+}
+
+.captureIndicator {
+    background-color: red;
+}
+
+.targetCaptureIndicator {
+    background-color: #8F0;
+}
+.targetBubbleIndicator {
+    background-color: #0F8;
+}
+
+.bubbleIndicator {
+    background-color: blue;
+}
+
+.animation {
+    width: 100%;
+    transition: width var(--indicator-timeout);
+    /* transition-duration: var(--indicator-timeout);
+    transition-property: width; */
+}

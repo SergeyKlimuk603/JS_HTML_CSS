@@ -1,10 +1,10 @@
-const DIV_AMOUNT = 4;
+const DIV_AMOUNT = 3;
 const INDICATOR_TIMEOUT = 0.2;
 
 let timerIds = [];
-const divContainer = `<div id="div{!id}" class="divContainer">
+const divContainer = `<div class="divContainer">
                         <div class="divTitle">
-                            Div {!id}.
+                            Div.
                         </div>
                         <div class="twoColumnDiv">
                             <input type="checkbox" class="captureCheckbox" checked>
@@ -15,7 +15,7 @@ const divContainer = `<div id="div{!id}" class="divContainer">
                             <input type="checkbox" class="bubbleCheckbox" checked>
                                 Process Bubling phase
                             <br>
-                            <button name="div{!id}" class="throwEventButton">Throw on event</button>          
+                            <button class="throwEventButton">Throw on event</button>          
                         </div>
                         <div class="twoColumnDiv">
                             <div class="fourColumnDiv">
@@ -49,7 +49,7 @@ document.head.append(style);
 
 let bodyContent = '{!innerContent}';
 for (let i = 0; i < DIV_AMOUNT; i++) {
-    bodyContent = bodyContent.replace('{!innerContent}', divContainer).replaceAll('{!id}', i);
+    bodyContent = bodyContent.replace('{!innerContent}', divContainer);
 }
 bodyContent = bodyContent.replace('{!innerContent}', '');
 body.innerHTML = bodyContent;
@@ -63,7 +63,7 @@ divContainers.forEach(element => {
                 runAnimation(element.querySelector('.captureIndicator'), event);
             }
 
-            if (element.querySelector('.targetCheckbox').checked && (event.target.name === element.id)) {
+            if (element.querySelector('.targetCheckbox').checked && (event.target === element.querySelector('.throwEventButton'))) {
                 runAnimation(element.querySelector('.targetCaptureIndicator'), event);
             }
         },
@@ -72,7 +72,7 @@ divContainers.forEach(element => {
     element.addEventListener(
         'myevent', 
         (event) => {            
-            if (element.querySelector('.targetCheckbox').checked && (event.target.name === element.id)) {
+            if (element.querySelector('.targetCheckbox').checked && (event.target === element.querySelector('.throwEventButton'))) {
                 runAnimation(element.querySelector('.targetBubbleIndicator'), event);
             }
 
