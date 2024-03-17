@@ -39,7 +39,6 @@ function addContainerListeners() {
     divContainers.forEach(element => {
         addCaptureListeners(element);
         addBubbleListeners(element);
-        addAnimationListeners(element)
     });
 }
 
@@ -51,7 +50,9 @@ function addCaptureListeners(element) {
                 runAnimation(element.querySelector('.captureIndicator'), event);
             }
 
-            if (element.querySelector('.targetCheckbox').checked && (event.target === element.querySelector('.throwEventButton'))) {
+            if (element.querySelector('.targetCheckbox').checked 
+                && (event.target === element.querySelector('.throwEventButton'))
+            ) {
                 runAnimation(element.querySelector('.targetCaptureIndicator'), event);
             }
         },
@@ -63,7 +64,9 @@ function addBubbleListeners(element) {
     element.addEventListener(
         'myevent', 
         (event) => {            
-            if (element.querySelector('.targetCheckbox').checked && (event.target === element.querySelector('.throwEventButton'))) {
+            if (element.querySelector('.targetCheckbox').checked 
+                && (event.target === element.querySelector('.throwEventButton'))
+            ) {
                 runAnimation(element.querySelector('.targetBubbleIndicator'), event);
             }
 
@@ -73,16 +76,6 @@ function addBubbleListeners(element) {
         }
     );
 }
-
-function addAnimationListeners(element) {
-    element.addEventListener(
-        'animationend', 
-        (event) => {
-            event.target.classList.remove('animation');
-        }
-    );
-}
-
 
 function addButtonListeners() {
     const buttons = body.querySelectorAll('.throwEventButton');
