@@ -1,5 +1,5 @@
 const DIV_AMOUNT = 4;
-const INDICATOR_TIMEOUT = 0.2;
+const INDICATOR_TIMEOUT = 0.5;
 
 let timerIds = [];
 

@@ -1,3 +1,12 @@
+
+button {
+    box-shadow: 0.1rem 0.1rem 0.5rem gray;
+}
+
+label {
+    display: block;
+}
+
 .divContainer {
     margin: 2rem;
     padding: 1rem;
@@ -28,13 +37,10 @@
     text-align: center;
 }
 
-label {
-    display: block;
-}
-
 .indicator {
     width: 0%; 
-    height: 20px
+    height: 20px;
+    opacity: 0%;
 }
 
 .captureIndicator {
@@ -54,7 +60,10 @@ label {
 
 .animation {
     width: 100%;
-    transition: width var(--indicator-timeout);
+    opacity: 100%;
+    transition: width var(--indicator-timeout),
+        opacity var(--indicator-timeout) ease-in;
+    /* transition: width var(--indicator-timeout), opacity var(--indicator-timeout); */
     /* transition-duration: var(--indicator-timeout);
     transition-property: width; */
 }
