@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Events</title>
+    <link rel="stylesheet" href="task1-5.css">
+</head>
+<body id="body">
+    <div id="nestedDivContainer">
+        <div class="divInnerConteiner"></div>
+    </div>
+
+    <template id="divExample">
+        <div class="divContainer">
+            <div class="divTitle">
+                Div.
+            </div>
+            <eventControl>
+                <label>
+                    <input type="checkbox" class="captureCheckbox" checked>
+                    Process Capturing phase
+                </label>
+                <label>
+                    <input type="checkbox" class="targetCheckbox" checked>
+                    Process Target phase
+                </label>
+                <label>
+                    <input type="checkbox" class="bubbleCheckbox" checked>
+                    Process Bubling phase
+                </label>
+                <button class="throwEventButton">Throw on event</button>          
+            </eventControl>
+            <eventIndicator>
+                <div class="captureIndicatorSection">
+                    capture
+                    <div class="captureIndicator indicator"></div>
+                </div>
+                <div class="targetCaptureIndicatorSection">
+                    target Capture
+                    <div class="targetCaptureIndicator indicator"></div>
+                </div>
+                <div class="targetBubblesIndicatorSection">
+                    target Bubbles
+                    <div class="targetBubbleIndicator indicator"></div>
+                </div>
+                <div class="bubblesIndicatorSection">
+                    bubles
+                    <div class="bubbleIndicator indicator"></div>
+                </div>
+            </eventIndicator>
+            <div class="divInnerConteiner"></div>
+        </div>
+    </template>
+
+    <script src="task1-5.js"></script>
+</body>
+</html>
