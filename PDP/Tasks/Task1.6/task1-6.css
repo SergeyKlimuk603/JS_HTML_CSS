@@ -1,6 +1,11 @@
 
 button {
     box-shadow: 0.1rem 0.1rem 0.5rem gray;
+    border-radius: 1rem;
+}
+
+button:hover {
+    background-color: antiquewhite;
 }
 
 label {
