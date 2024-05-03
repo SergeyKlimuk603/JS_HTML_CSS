@@ -1,4 +1,50 @@
 
+async function fun() {
+    console.log('-----', 111);
+    return 666
+}
+fun().then((result) => {console.log('-----: ', 333)})
+console.log('-----222: ', 222);
+
+
+
+
+//---------------------------------------------------------------------------------------------
+
+
+let prom = new Promise((resolve, reject) => {
+    resolve('qqq', '555')
+});
+
+console.log('-----111: ', 111);
+prom
+    .then((result) => {
+        console.log('-----result: ', result);
+        return('ttt')
+    })
+    .then((result) => {
+        console.log('-----444: ', 444);
+        console.log('-----result: ', result);
+    })
+
+console.log('-----333: ', 333);
+
+//---------------------------------------------------------------------------------------------
+
+'use strict'
+function sayHi() {
+    console.log('-----this: ', this);
+}
+sayHi();
+
+
+console.log('-----: ', false == null);
+console.log('-----: ', false == 0);
+console.log('-----: ', null == 0);
+console.log('-----: ', Number(null));
+console.log('-----undefined == null: ', undefined == null);
+console.log('-----undefined === null: ', undefined === null);
+
 //---------------------------------------------------------------------------------------------
 
 {

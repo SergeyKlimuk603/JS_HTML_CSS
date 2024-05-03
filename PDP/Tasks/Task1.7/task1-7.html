@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Events</title>
+    <link rel="stylesheet" href="task1-7.css">
+</head>
+<body id="body">
+    <div id="nestedDivContainer">
+        <div class="divInnerConteiner"></div>
+    </div>
+    <div>
+        <audio id="audioPlayer" src="nokia-poly-original.mp3" controls></audio>
+    </div>
+    <div id="canvasDiv">
+        <p>You can draw here</p>
+        <canvas id="canvas" width="250" height="250" style="border:2px solid rgb(252, 164, 2)">Canvas</canvas>
+    </div>
+
+    <template id="divExample">
+        <div class="divContainer">
+            <div class="divTitle">
+                Div.
+            </div>
+            <eventControl>
+                <label>
+                    <input type="checkbox" class="captureCheckbox" checked>
+                    Process Capturing phase
+                </label>
+                <label>
+                    <input type="checkbox" class="targetCheckbox" checked>
+                    Process Target phase
+                </label>
+                <label>
+                    <input type="checkbox" class="bubbleCheckbox" checked>
+                    Process Bubling phase
+                </label>
+                <button class="throwEventButton">Throw on event</button>     
+            </eventControl>
+            <eventIndicator>
+                <div class="captureIndicatorSection">
+                    capture
+                    <div class="captureIndicator indicator"></div>
+                </div>
+                <div class="targetCaptureIndicatorSection">
+                    target Capture
+                    <div class="targetCaptureIndicator indicator"></div>
+                </div>
+                <div class="targetBubblesIndicatorSection">
+                    target Bubbles
+                    <div class="targetBubbleIndicator indicator"></div>
+                </div>
+                <div class="bubblesIndicatorSection">
+                    bubles
+                    <div class="bubbleIndicator indicator"></div>
+                </div>
+            </eventIndicator>
+            <div class="divInnerConteiner"></div>
+        </div>
+    </template>
+
+    <div id="localStorageId">
+        Local Storage
+        <input type="text">
+        <button onclick="saveLocalState()">Save state</button>
+        <button onclick="restoreLocalState()">Restore state</button>
+    </div>
+    <div id="sessionStorageId">
+        Session Storage
+        <input type="text">
+        <button onclick="saveSessionState()">Save state</button>
+        <button onclick="restoreSessionState()">Restore state</button>
+    </div>
+    <script>
+        let localInput;
+        const localInputValue = body.querySelector('#localStorageId > input');
+        const sessionInputValue = body.querySelector('#sessionStorageId > input');
+        function restoreLocalState() {
+            console.log('-----restoreLocalState(): ');
+            localInputValue.value = localStorage.getItem('localInput');
+        }
+
+        function saveLocalState() {
+            console.log('-----saveLocalState(): ');
+            localStorage.setItem('localInput', localInputValue.value);
+        }
+        function restoreSessionState() {
+            console.log('-----restoreSessionState(): ');
+            sessionInputValue.value = sessionStorage.getItem('sessionInput');
+        }
+
+        function saveSessionState() {
+            console.log('-----saveSessionState(): ');
+            sessionStorage.setItem('sessionInput', sessionInputValue.value);
+        }
+        
+    </script>
+
+    <script src="task1-7.js"></script>
+</body>
+</html>

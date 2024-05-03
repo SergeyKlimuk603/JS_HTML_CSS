@@ -1,62 +1,46 @@
 
 button {
     box-shadow: 0.1rem 0.1rem 0.5rem gray;
+    border-radius: 1rem;
 }
 
-
+button:hover {
+    background-color: antiquewhite;
+}
 
 label {
     display: block;
 }
 
-/* @media (min-width: 1400px) {
-    label {
-        color: blue;
-    }
-}
-
-@media (min-width: 1200px) {
-    label {
-        color: red;
-    }
-}
-
-@media (min-width: 1000px) {
-    label {
-        color: green;
-    }
-} */
-
-@media (max-width: 1400px) {
-    label {
-        color: blue;
-    }
-}
-
-@media (max-width: 1200px) {
-    label {
-        color: red;
-    }
-}
-
-@media (max-width: 1000px) {
-    label {
-        color: green;
-    }
-}
-
-
-
-
-
 .divContainer {
-    margin: 2rem;
-    padding: 1rem;
+    /* margin: 2rem; */
+    margin: 1%;
+    /* padding: 1rem; */
+    padding: 1%;
     border: 2px solid;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 2rem auto auto;
-    column-gap: 5rem;
+    /* column-gap: 5rem; */
+    column-gap: 2%;
+}
+
+@media (max-width: 1500px) {
+    .divContainer{
+        border-color: blue;
+    }
+}
+
+@media (max-width: 1200px) {
+    .divContainer{
+        border-color: green;
+    }
+}
+
+@media (max-width: 900px) {
+    .divContainer{
+        border-color: red;
+    }
 }
 
 .divTitle {
@@ -78,7 +62,8 @@ eventControl > label {
 }
 eventControl > button {
     flex: 100%;
-    height: 2rem;
+    /* height: 2rem; */
+    margin-right: 70%;
 }
 
 eventIndicator {
@@ -141,4 +126,13 @@ eventIndicator {
 .divInnerConteiner {
     grid-column: 1/3;
     grid-row: 3/4;
+}
+
+#canvasDiv {
+    text-align: center;
+}
+
+
+#localStorageId, #sessionStorageId {
+    margin: 1rem;
 }

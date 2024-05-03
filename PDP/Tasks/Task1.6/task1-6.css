@@ -25,6 +25,24 @@ label {
     column-gap: 2%;
 }
 
+@media (max-width: 1500px) {
+    .divContainer{
+        border-color: blue;
+    }
+}
+
+@media (max-width: 1200px) {
+    .divContainer{
+        border-color: green;
+    }
+}
+
+@media (max-width: 900px) {
+    .divContainer{
+        border-color: red;
+    }
+}
+
 .divTitle {
     text-align: center;
     font-size: 1.1rem;
